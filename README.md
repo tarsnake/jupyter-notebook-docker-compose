@@ -3,6 +3,10 @@
 This repository contains a simple docker-compose definition for launching the popular Jupyter Data Science Notebook.
 You can define a password with the script ```generate_token.py -p S-E-C-R-E-T``` and generate SSL certificates as described below.
 
+# Local directory
+mkdir ~/notebooks
+
+
 ## Control the container:
 
 * ```docker-compose up``` mounts the directory and starts the container
@@ -36,13 +40,13 @@ services:
     datascience-notebook:
         image: jupyter/base-notebook:latest
         volumes:
-            - /tmp/jupyter_test_dir:/home/docker_worker/work            
+            - /tmp/jupyter_test_dir:/home/jupyter/work            
         ports:
             - 8891:8888
         command: "start-notebook.sh"
         user: root
         environment:
-          NB_USER: docker_worker
+          NB_USER: jupyter
           NB_UID: 1008
           NB_GID: 1011
           CHOWN_HOME: 'yes'
@@ -56,7 +60,7 @@ services:
 # Set permissions for the container:
 #   sudo chown -R 1000 ${LOCAL_WORKING_DIR}
 
-LOCAL_WORKING_DIR=/data/jupyter/notebooks
+LOCAL_WORKING_DIR=/notebooks
 
 # Generate an access token like this
 #   import IPython as IPython
