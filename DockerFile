@@ -9,9 +9,7 @@ RUN conda install scipy
 RUN conda install matplotlib
 RUN conda install seaborn
 RUN conda install ipywidgets
-RUN conda install jupyterthemes
-RUN conda install jupyter_contrib_nbextensions
 
-
-# install the notebook extensions
+# install the notebook extensions and themes
 RUN conda install -c conda-forge jupyter_contrib_nbextensions
+RUN conda install -c conda-forge jupyterthemes
